@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+/* Custom style di bawah ini */
+.neumorphism {
+  box-shadow:
+    6px 6px 20px #c8b08b2c,
+    -6px -6px 12px #fff9f0;
+}
+.drop-shadow-glow {
+  filter: drop-shadow(0 2px 12px #d3932d22);
+}
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(18px);}
+  100% { opacity: 1; transform: none;}
+}
+.animate-fadeIn {
+  animation: fadeIn 0.7s ease-in;
+}
