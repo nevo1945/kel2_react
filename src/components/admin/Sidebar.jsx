@@ -17,9 +17,7 @@ const menuItems = [
   { name: "Tim Kami", path: "/admin/team", icon: <FiUsers /> },
   { name: "Testimoni Peserta", path: "/admin/testimonials", icon: <FiMessageSquare /> },
   { name: "Formulir Jadwal Training", path: "/admin/appointment", icon: <FiCalendar /> },
-  { name: "Newsletter & Kontak", path: "/admin/newsletter", icon: <MdContactMail /> },
-  { name: "Footer & Copyright", path: "/admin/footer", icon: <MdCopyright /> },
-  { name: "Pengaturan", path: "/admin/settings", icon: <FiSettings /> },
+  { name: "Newsletter & Kontak", path: "/admin/newsletter", icon: <MdContactMail /> }
 ];
 
 export default function Sidebar() {

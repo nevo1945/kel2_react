@@ -86,18 +86,7 @@ export default function Header() {
             className="pl-10 pr-3 py-2 rounded-lg shadow-inner outline-none focus:ring-2 focus:ring-[#d3932d] border border-[#d3932d]/30 bg-white/80 dark:bg-zinc-800/80 text-gray-900 dark:text-zinc-100 placeholder:text-[#d3932d]/50 transition"
           />
         </div>
-        {/* Dark/Light Toggle */}
-        <button
-          aria-label="Toggle dark mode"
-          className="w-10 h-10 rounded-full flex items-center justify-center bg-white/80 dark:bg-zinc-800/80 border border-[#d3932d]/30 shadow-md hover:scale-105 transition"
-          onClick={() => setDark((d) => !d)}
-        >
-          {dark ? (
-            <FiSun style={{ color: "#d3932d" }} className="text-xl" />
-          ) : (
-            <FiMoon style={{ color: "#d3932d" }} className="text-xl" />
-          )}
-        </button>
+        
         {/* Avatar and Dropdown */}
         <div className="relative" ref={dropdownRef}>
           <button

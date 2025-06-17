@@ -11,6 +11,7 @@ import EditService from "./pages/admin/services/EditService";
 import AdminAppointment from "./pages/admin/AdminAppointment";
 import AdminWhyChooseUs from "./pages/admin/AdminWhyChooseUs";
 import AdminTeam from "./pages/admin/AdminTeam";
+import AdminNewsletter from "./pages/admin/AdminNewsletter";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/admin/services/edit/:id" element={<EditService />} />
         <Route path="/admin/appointment" element={<AdminAppointment />} />
         <Route path="/admin/Team" element={<AdminTeam />} />
+        <Route path="/admin/Newsletter" element={<AdminNewsletter />} />
       </Routes>
     </Router>
   );
