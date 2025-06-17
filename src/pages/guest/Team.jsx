@@ -1,82 +1,97 @@
-export default function Team() {
-    return (
-        <div className="container-fluid team pt-6 pb-6">
-            <div className="container">
-                <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '600px' }}>
-                    <h1 className="display-6 text-uppercase mb-5">Meet Our Professional and Experience Welder</h1>
-                </div>
-                <div className="row g-4">
-                    <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div className="team-item">
-                            <div className="position-relative overflow-hidden">
-                                <img className="img-fluid w-100" src="/assets/Weldork-1.0.0/img/team-1.jpg" alt="" />
-                                <div className="team-social">
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-linkedin-in"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-youtube"></i></a>
-                                </div>
-                            </div>
-                            <div className="text-center p-4">
-                                <h5 className="mb-1">Alex Robin</h5>
-                                <span>Welder</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                        <div className="team-item">
-                            <div className="position-relative overflow-hidden">
-                                <img className="img-fluid w-100" src="/assets/Weldork-1.0.0/img/team-2.jpg" alt="" />
-                                <div className="team-social">
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-linkedin-in"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-youtube"></i></a>
-                                </div>
-                            </div>
-                            <div className="text-center p-4">
-                                <h5 className="mb-1">Andrew Bon</h5>
-                                <span>Welder</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div className="team-item">
-                            <div className="position-relative overflow-hidden">
-                                <img className="img-fluid w-100" src="/assets/Weldork-1.0.0/img/team-3.jpg" alt="" />
-                                <div className="team-social">
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-linkedin-in"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-youtube"></i></a>
-                                </div>
-                            </div>
-                            <div className="text-center p-4">
-                                <h5 className="mb-1">Martin Tompson</h5>
-                                <span>Welder</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div className="team-item">
-                            <div className="position-relative overflow-hidden">
-                                <img className="img-fluid w-100" src="/assets/Weldork-1.0.0/img/team-4.jpg" alt="" />
-                                <div className="team-social">
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-linkedin-in"></i></a>
-                                    <a className="btn btn-square btn-dark mx-1" href=""><i className="fab fa-youtube"></i></a>
-                                </div>
-                            </div>
-                            <div className="text-center p-4">
-                                <h5 className="mb-1">Clarabelle Samber</h5>
-                                <span>Welder</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabaseClient";
 
-            </div>
+export default function GuestTeam() {
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      const { data, error } = await supabase.from("team").select("*");
+
+      if (!error) {
+        setTeams(data);
+      } else {
+        alert("Gagal mengambil data tim.");
+      }
+    };
+
+    fetchTeam();
+  }, []);
+
+  return (
+    <div className="container-fluid team pt-6 pb-6">
+      <div className="container">
+        <div
+          className="text-center mx-auto wow fadeInUp"
+          data-wow-delay="0.1s"
+          style={{ maxWidth: "600px" }}
+        >
+          <h1 className="display-6 text-uppercase mb-5">
+            Meet Our Professional and Experience Welder
+          </h1>
         </div>
-    );
+        <div className="row g-4">
+          {teams.map((member, index) => (
+            <div
+              key={member.id}
+              className="col-lg-3 col-md-6 wow fadeInUp"
+              data-wow-delay={`${0.3 + index * 0.1}s`}
+            >
+              <div className="team-item">
+                <div className="position-relative overflow-hidden">
+                  <img
+                    className="img-fluid w-100"
+                    src={member.image}
+                    alt={member.name}
+                  />
+                  <div className="team-social">
+                    {member.facebook && (
+                      <a
+                        className="btn btn-square btn-dark mx-1"
+                        href={member.facebook}
+                        target="_blank"
+                      >
+                        <i className="fab fa-facebook-f"></i>
+                      </a>
+                    )}
+                    {member.twitter && (
+                      <a
+                        className="btn btn-square btn-dark mx-1"
+                        href={member.twitter}
+                        target="_blank"
+                      >
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                    )}
+                    {member.linkedin && (
+                      <a
+                        className="btn btn-square btn-dark mx-1"
+                        href={member.linkedin}
+                        target="_blank"
+                      >
+                        <i className="fab fa-linkedin-in"></i>
+                      </a>
+                    )}
+                    {member.youtube && (
+                      <a
+                        className="btn btn-square btn-dark mx-1"
+                        href={member.youtube}
+                        target="_blank"
+                      >
+                        <i className="fab fa-youtube"></i>
+                      </a>
+                    )}
+                  </div>
+                </div>
+                <div className="text-center p-4">
+                  <h5 className="mb-1">{member.name}</h5>
+                  <span>{member.position}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
