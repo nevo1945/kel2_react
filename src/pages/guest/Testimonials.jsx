@@ -22,24 +22,45 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <div className="container my-5">
-      <h2 className="text-center mb-4">What Our Clients Say</h2>
-      <div className="row">
-        {testimonials.map((t) => (
-          <div key={t.id} className="col-md-4">
-            <div className="card p-3 shadow">
-              <img
-                src={t.avatar_url || "https://via.placeholder.com/100"}
-                alt={t.name}
-                className="rounded-circle mb-3"
-                width="80"
-              />
-              <h5>{t.name}</h5>
-              <p className="text-muted">{t.role}</p>
-              <p>"{t.content}"</p>
-            </div>
-          </div>
-        ))}
+    <div className="container-fluid py-6 bg-light">
+      <div className="container">
+        <div
+          className="text-center mx-auto wow fadeInUp"
+          data-wow-delay="0.1s"
+          style={{ maxWidth: "600px" }}
+        >
+          <h1 className="display-6 text-uppercase mb-5">
+            What Our Clients Say
+          </h1>
+        </div>
+        <div className="row g-4">
+          {testimonials.length > 0 ? (
+            testimonials.map((t, index) => (
+              <div
+                key={t.id}
+                className="col-lg-4 col-md-6 wow fadeInUp"
+                data-wow-delay={`${0.1 + (index % 4) * 0.1}s`}
+              >
+                <div className="card h-100 shadow rounded-4 border-0">
+                  <div className="card-body text-center p-4">
+                    <img
+                      src={t.avatar_url || "https://via.placeholder.com/100"}
+                      alt={t.name}
+                      className="rounded-circle mb-3"
+                      width="80"
+                      height="80"
+                    />
+                    <h5 className="fw-bold">{t.name}</h5>
+                    <p className="text-muted mb-2">{t.role}</p>
+                    <p className="fst-italic">"{t.content}"</p>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-center">Loading testimonials...</p>
+          )}
+        </div>
       </div>
     </div>
   );

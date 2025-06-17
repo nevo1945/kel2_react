@@ -47,11 +47,11 @@ export default function Appointment() {
                 <div className="row gy-5 gx-0">
                     <div className="col-lg-6 pe-lg-5 wow fadeIn" data-wow-delay="0.3s">
                         <h1 className="display-6 text-uppercase text-white mb-4">
-                            We Complete Welding & Metal Projects in Time
+                            Schedule Your Welding & Metal Service Appointment Today
                         </h1>
                         <p className="text-white mb-5 wow fadeIn" data-wow-delay="0.4s">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                            augue, iaculis id elit eget, ultrices pulvinar tortor.
+                            Make your welding service appointment quickly and easily. Choose your service,
+                            fill in your details, and we’ll handle the rest. Quality metal work done on time.
                         </p>
                         <div className="d-flex align-items-start wow fadeIn" data-wow-delay="0.5s">
                             <div className="btn-lg-square bg-white">

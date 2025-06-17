@@ -27,7 +27,7 @@ export default function GuestTeam() {
           style={{ maxWidth: "600px" }}
         >
           <h1 className="display-6 text-uppercase mb-5">
-            Meet Our Professional and Experience Welder
+            Meet Our Professional and Experience Welder Is My Team
           </h1>
         </div>
         <div className="row g-4">
