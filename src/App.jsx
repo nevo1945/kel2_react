@@ -25,40 +25,40 @@ function App() {
         
         {/* PROTECTED ADMIN ROUTES */}
         <Route path="/admin" element={
-          <ProtectedAdminRoute><Dashboard /></ProtectedAdminRoute>
+          <Dashboard />
         } />
         <Route path="/admin/testimonials" element={
-          <ProtectedAdminRoute><AdminTestimonials /></ProtectedAdminRoute>
+          <AdminTestimonials />
         } />
         <Route path="/admin/carousel" element={
-          <ProtectedAdminRoute><CarouselManager /></ProtectedAdminRoute>
+          <CarouselManager />
         } />
         <Route path="/admin/About" element={
-          <ProtectedAdminRoute><AboutManager /></ProtectedAdminRoute>
+          <AboutManager />
         } />
         <Route path="/admin/Features" element={
-          <ProtectedAdminRoute><FeatureManager /></ProtectedAdminRoute>
+          <FeatureManager />
         } />
         <Route path="/admin/WhyChooseUs" element={
-          <ProtectedAdminRoute><AdminWhyChooseUs /></ProtectedAdminRoute>
+          <AdminWhyChooseUs />
         } />
         <Route path="/admin/services" element={
-          <ProtectedAdminRoute><ServicesList /></ProtectedAdminRoute>
+          <ServicesList />
         } />
         <Route path="/admin/services/create" element={
-          <ProtectedAdminRoute><CreateService /></ProtectedAdminRoute>
+          <CreateService />
         } />
         <Route path="/admin/services/edit/:id" element={
-          <ProtectedAdminRoute><EditService /></ProtectedAdminRoute>
+          <EditService />
         } />
         <Route path="/admin/appointment" element={
-          <ProtectedAdminRoute><AdminAppointment /></ProtectedAdminRoute>
+          <AdminAppointment />
         } />
         <Route path="/admin/Team" element={
-          <ProtectedAdminRoute><AdminTeam /></ProtectedAdminRoute>
+          <AdminTeam />
         } />
         <Route path="/admin/Newsletter" element={
-          <ProtectedAdminRoute><AdminNewsletter /></ProtectedAdminRoute>
+          <AdminNewsletter />
         } />
 
         {/* AUTH ROUTES */}
