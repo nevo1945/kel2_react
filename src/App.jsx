@@ -22,48 +22,60 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        
-        {/* PROTECTED ADMIN ROUTES */}
-        <Route path="/admin" element={
-          <Dashboard />
-        } />
-        <Route path="/admin/testimonials" element={
-          <AdminTestimonials />
-        } />
-        <Route path="/admin/carousel" element={
-          <CarouselManager />
-        } />
-        <Route path="/admin/About" element={
-          <AboutManager />
-        } />
-        <Route path="/admin/Features" element={
-          <FeatureManager />
-        } />
-        <Route path="/admin/WhyChooseUs" element={
-          <AdminWhyChooseUs />
-        } />
-        <Route path="/admin/services" element={
-          <ServicesList />
-        } />
-        <Route path="/admin/services/create" element={
-          <CreateService />
-        } />
-        <Route path="/admin/services/edit/:id" element={
-          <EditService />
-        } />
-        <Route path="/admin/appointment" element={
-          <AdminAppointment />
-        } />
-        <Route path="/admin/Team" element={
-          <AdminTeam />
-        } />
-        <Route path="/admin/Newsletter" element={
-          <AdminNewsletter />
-        } />
 
         {/* AUTH ROUTES */}
         <Route path="/admin/auth/login" element={<AdminLogin />} />
         <Route path="/admin/auth/not-found" element={<AdminNotFound />} />
+
+        {/* PROTECTED ADMIN ROUTES */}
+        <Route
+          path="/admin"
+          element={<ProtectedAdminRoute><Dashboard /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/testimonials"
+          element={<ProtectedAdminRoute><AdminTestimonials /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/carousel"
+          element={<ProtectedAdminRoute><CarouselManager /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/About"
+          element={<ProtectedAdminRoute><AboutManager /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/Features"
+          element={<ProtectedAdminRoute><FeatureManager /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/WhyChooseUs"
+          element={<ProtectedAdminRoute><AdminWhyChooseUs /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/services"
+          element={<ProtectedAdminRoute><ServicesList /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/services/create"
+          element={<ProtectedAdminRoute><CreateService /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/services/edit/:id"
+          element={<ProtectedAdminRoute><EditService /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/appointment"
+          element={<ProtectedAdminRoute><AdminAppointment /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/Team"
+          element={<ProtectedAdminRoute><AdminTeam /></ProtectedAdminRoute>}
+        />
+        <Route
+          path="/admin/Newsletter"
+          element={<ProtectedAdminRoute><AdminNewsletter /></ProtectedAdminRoute>}
+        />
 
         {/* CATCH-ALL */}
         <Route path="*" element={<AdminNotFound />} />
