@@ -41,7 +41,7 @@ export default function Services() {
                   <div className="service-inner pb-5">
                     <img
                       className="img-fluid w-100"
-                      src={service.image}
+                      src={service.image_url}
                       alt={service.title}
                     />
                     <div className="service-text px-5 pt-4">
