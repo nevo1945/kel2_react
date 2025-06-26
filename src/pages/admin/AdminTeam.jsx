@@ -5,6 +5,7 @@ import { supabase } from "../../lib/supabaseClient";
 export default function AdminTeam() {
   const [teamList, setTeamList] = useState([]);
   const [form, setForm] = useState({
+    id: null,
     name: "",
     position: "",
     image: "",
@@ -15,7 +16,10 @@ export default function AdminTeam() {
   });
 
   const fetchTeam = async () => {
-    const { data, error } = await supabase.from("team").select("*").order("id", { ascending: true });
+    const { data, error } = await supabase
+      .from("team")
+      .select("*")
+      .order("id", { ascending: true });
     if (!error) {
       setTeamList(data);
     } else {
@@ -30,23 +34,58 @@ export default function AdminTeam() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { error } = await supabase.from("team").insert([form]);
-
-    if (!error) {
-      alert("Team member added successfully!");
-      setForm({
-        name: "",
-        position: "",
-        image: "",
-        facebook: "",
-        twitter: "",
-        linkedin: "",
-        youtube: "",
-      });
-      fetchTeam(); // refresh data
+    if (form.id) {
+      // UPDATE
+      const { error } = await supabase
+        .from("team")
+        .update(form)
+        .eq("id", form.id);
+      if (!error) {
+        alert("Team member updated successfully!");
+      } else {
+        alert("Update error: " + error.message);
+      }
     } else {
-      alert("Error inserting data: " + error.message);
+      // INSERT
+      const { error } = await supabase.from("team").insert([form]);
+      if (!error) {
+        alert("Team member added successfully!");
+      } else {
+        alert("Insert error: " + error.message);
+      }
     }
+    resetForm();
+    fetchTeam();
+  };
+
+  const handleEdit = (member) => {
+    setForm(member);
+  };
+
+  const handleDelete = async (id) => {
+    const confirmDelete = confirm("Are you sure you want to delete this member?");
+    if (confirmDelete) {
+      const { error } = await supabase.from("team").delete().eq("id", id);
+      if (!error) {
+        alert("Deleted successfully!");
+        fetchTeam();
+      } else {
+        alert("Delete error: " + error.message);
+      }
+    }
+  };
+
+  const resetForm = () => {
+    setForm({
+      id: null,
+      name: "",
+      position: "",
+      image: "",
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      youtube: "",
+    });
   };
 
   useEffect(() => {
@@ -67,9 +106,20 @@ export default function AdminTeam() {
             <input name="linkedin" value={form.linkedin} onChange={handleChange} className="border p-2 rounded" placeholder="LinkedIn URL" />
             <input name="youtube" value={form.youtube} onChange={handleChange} className="border p-2 rounded" placeholder="YouTube URL" />
           </div>
-          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-            Add Team Member
-          </button>
+          <div className="flex gap-2">
+            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+              {form.id ? "Update" : "Add"} Team Member
+            </button>
+            {form.id && (
+              <button
+                type="button"
+                onClick={resetForm}
+                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+              >
+                Cancel
+              </button>
+            )}
+          </div>
         </form>
 
         <div className="mt-8">
@@ -79,7 +129,21 @@ export default function AdminTeam() {
               <div key={member.id} className="border p-4 rounded bg-white shadow">
                 <img src={member.image} alt={member.name} className="w-full h-40 object-cover rounded mb-2" />
                 <h4 className="text-lg font-semibold">{member.name}</h4>
-                <p>{member.position}</p>
+                <p className="mb-2">{member.position}</p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleEdit(member)}
+                    className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(member.id)}
+                    className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             ))}
           </div>
