@@ -26,15 +26,11 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-2">
-          <span
-            className="inline-block w-12 h-12 rounded-xl text-white flex items-center justify-center text-3xl font-black select-none neumorphism"
-            style={{
-              background: "linear-gradient(135deg, #d3932d 70%, #e9b664 100%)",
-              boxShadow: "0 8px 24px 0 #d3932d22, 0 2px 8px 0 #fff"
-            }}
-          >
-            TH
-          </span>
+          <img
+              src="/assets/Weldork-1.0.0/img/logo.png"
+              alt="Training Hub Logo"
+              className="w-6 h-6 mr-2"
+            />
           <span
             className="text-3xl font-extrabold drop-shadow-glow"
             style={{ color: "#d3932d" }}

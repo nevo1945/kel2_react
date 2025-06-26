@@ -3,8 +3,13 @@ export default function Topbar() {
     <div className="hidden lg:block fixed top-0 z-50 w-full bg-[#d3932d] text-white">
       <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between text-sm">
-          <a href="/" className="text-xl font-bold tracking-wider flex items-center">
-            <i className="fas fa-wrench mr-2 text-black"></i> TRAINING HUB
+          <a href="#" className="text-xl font- tracking-wider flex items-center">
+            <img
+              src="/assets/Weldork-1.0.0/img/logo.png"
+              alt="Training Hub Logo"
+              className="w-6 h-6 mr-2"
+            />
+            TRAINING HUB
           </a>
           <div className="flex items-center space-x-6">
             <span className="flex items-center">
