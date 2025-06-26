@@ -8,13 +8,13 @@ export default function Topbar() {
           </a>
           <div className="flex items-center space-x-6">
             <span className="flex items-center">
-              <i className="fas fa-map-marker-alt mr-2"></i>123 Street, New York, USA
+              <i className="fas fa-map-marker-alt mr-2"></i>Umban Sari Street, Rumbai, USA (umban sari atas)
             </span>
             <span className="flex items-center">
-              <i className="fas fa-envelope mr-2"></i>info@example.com
+              <i className="fas fa-envelope mr-2"></i>kel2@gmail.com
             </span>
             <span className="flex items-center">
-              <i className="fas fa-phone-alt mr-2"></i>+012 345 67890
+              <i className="fas fa-phone-alt mr-2"></i>+62895414071747
             </span>
             <div className="flex space-x-2 ml-4">
               <a className="w-8 h-8 flex items-center justify-center bg-white text-[#d3932d] hover:bg-gray-100 rounded-full" href="#"><i className="fab fa-facebook-f"></i></a>

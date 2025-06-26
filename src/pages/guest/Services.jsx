@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
+import ServiceModal from "../../components/admin/ServiceModal";
 
 export default function Services() {
   const [services, setServices] = useState([]);
+  const [selectedService, setSelectedService] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -17,14 +20,20 @@ export default function Services() {
     fetchServices();
   }, []);
 
+  const openModal = (service) => {
+    setSelectedService(service);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedService(null);
+  };
+
   return (
     <div className="container-fluid service pt-6 pb-6">
       <div className="container">
-        <div
-          className="text-center mx-auto wow fadeInUp"
-          data-wow-delay="0.1s"
-          style={{ maxWidth: "600px" }}
-        >
+        <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: "600px" }}>
           <h1 className="display-6 text-uppercase mb-5">
             Reliable & High-Quality Welding Services
           </h1>
@@ -46,12 +55,14 @@ export default function Services() {
                     />
                     <div className="service-text px-5 pt-4">
                       <h5 className="text-uppercase">{service.title}</h5>
-                      <p>{service.description}</p>
                     </div>
-                    <a className="btn btn-light px-3" href="#">
+                    <button
+                      className="btn btn-light px-3"
+                      onClick={() => openModal(service)}
+                    >
                       Read More
                       <i className="bi bi-chevron-double-right ms-1"></i>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -61,6 +72,13 @@ export default function Services() {
           )}
         </div>
       </div>
+
+      {/* Modal */}
+      <ServiceModal
+        service={selectedService}
+        isOpen={modalOpen}
+        onClose={closeModal}
+      />
     </div>
   );
 }
