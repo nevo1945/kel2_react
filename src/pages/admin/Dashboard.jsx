@@ -48,19 +48,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <AdminLayout>
-      <section className="mb-8 flex items-center">
-        <TrainingHubIcon />
-        <PageHeader
-          title={
-            <span className="text-[2rem] font-extrabold tracking-tight text-[#d3932d] drop-shadow-lg">
-              Training<span className="text-gray-800">Hub</span>
-            </span>
-          }
-          subtitle={<span className="text-gray-500">Overview of database content summary</span>}
-        />
-      </section>
-
+    <AdminLayout>      
       <section className="bg-white shadow-lg rounded-xl p-6">
         <h2 className="text-xl font-semibold text-gray-700 mb-4">Table Data Overview</h2>
         <ResponsiveContainer width="100%" height={350}>
