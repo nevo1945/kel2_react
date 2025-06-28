@@ -59,7 +59,7 @@ export default function Appointment() {
                             </div>
                             <div className="ms-3">
                                 <h6 className="text-white text-uppercase">Office Address</h6>
-                                <span className="text-white">123 Street, New York, USA</span>
+                                <span className="text-white">umban sari Street, Rumbai, USA (umban sari atas)</span>
                             </div>
                         </div>
                         <hr className="bg-body" />
