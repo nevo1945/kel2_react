@@ -34,6 +34,13 @@ export default function AdminTeam() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validasi sederhana
+    if (!form.name.trim() || !form.position.trim()) {
+      alert("Name and position are required.");
+      return;
+    }
+
     if (form.id) {
       // UPDATE
       const { error } = await supabase
@@ -46,14 +53,16 @@ export default function AdminTeam() {
         alert("Update error: " + error.message);
       }
     } else {
-      // INSERT
-      const { error } = await supabase.from("team").insert([form]);
+      // INSERT (tanpa mengirim id)
+      const { id, ...formWithoutId } = form;
+      const { error } = await supabase.from("team").insert([formWithoutId]);
       if (!error) {
         alert("Team member added successfully!");
       } else {
         alert("Insert error: " + error.message);
       }
     }
+
     resetForm();
     fetchTeam();
   };
@@ -98,16 +107,61 @@ export default function AdminTeam() {
         <h2 className="text-2xl font-bold mb-4">Manage Team</h2>
         <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            <input name="name" value={form.name} onChange={handleChange} className="border p-2 rounded" placeholder="Name" />
-            <input name="position" value={form.position} onChange={handleChange} className="border p-2 rounded" placeholder="Position" />
-            <input name="image" value={form.image} onChange={handleChange} className="border p-2 rounded" placeholder="Image URL" />
-            <input name="facebook" value={form.facebook} onChange={handleChange} className="border p-2 rounded" placeholder="Facebook URL" />
-            <input name="twitter" value={form.twitter} onChange={handleChange} className="border p-2 rounded" placeholder="Twitter URL" />
-            <input name="linkedin" value={form.linkedin} onChange={handleChange} className="border p-2 rounded" placeholder="LinkedIn URL" />
-            <input name="youtube" value={form.youtube} onChange={handleChange} className="border p-2 rounded" placeholder="YouTube URL" />
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              className="border p-2 rounded"
+              placeholder="Name"
+            />
+            <input
+              name="position"
+              value={form.position}
+              onChange={handleChange}
+              className="border p-2 rounded"
+              placeholder="Position"
+            />
+            <input
+              name="image"
+              value={form.image}
+              onChange={handleChange}
+              className="border p-2 rounded"
+              placeholder="Image URL"
+            />
+            <input
+              name="facebook"
+              value={form.facebook}
+              onChange={handleChange}
+              className="border p-2 rounded"
+              placeholder="Facebook URL"
+            />
+            <input
+              name="twitter"
+              value={form.twitter}
+              onChange={handleChange}
+              className="border p-2 rounded"
+              placeholder="Twitter URL"
+            />
+            <input
+              name="linkedin"
+              value={form.linkedin}
+              onChange={handleChange}
+              className="border p-2 rounded"
+              placeholder="LinkedIn URL"
+            />
+            <input
+              name="youtube"
+              value={form.youtube}
+              onChange={handleChange}
+              className="border p-2 rounded"
+              placeholder="YouTube URL"
+            />
           </div>
           <div className="flex gap-2">
-            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
               {form.id ? "Update" : "Add"} Team Member
             </button>
             {form.id && (
@@ -127,7 +181,11 @@ export default function AdminTeam() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {teamList.map((member) => (
               <div key={member.id} className="border p-4 rounded bg-white shadow">
-                <img src={member.image} alt={member.name} className="w-full h-40 object-cover rounded mb-2" />
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-40 object-cover rounded mb-2"
+                />
                 <h4 className="text-lg font-semibold">{member.name}</h4>
                 <p className="mb-2">{member.position}</p>
                 <div className="flex gap-2">
